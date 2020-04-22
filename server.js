@@ -1,9 +1,8 @@
 const express = require('express');
-const admin = require("firebase-admin");
-require('dotenv').config()
+const admin = require('firebase-admin');
+const { serviceKey, port } = require('./config')
 
-const serviceAccount = process.env.GOOGLE_APPLICATION_CREDENTIALS;
-//const serviceAccount = require("./path/to/the/service-key.json");
+const serviceAccount = serviceKey;
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -12,12 +11,25 @@ admin.initializeApp({
 
 let db = admin.firestore();
 
-db.collection('test').get()
-  .then((snapshot) => {
-    snapshot.forEach((doc) => {
-      console.log(doc.id, '->', doc.data());
-    });
-  })
-  .catch((err) => {
-    console.log('Error getting documents', err);
-  });
+const app = express();
+
+app.get('/', (req, res) => {
+  res.send("HOME")
+})
+
+app.get('/api', (req, res) => {
+  db.collection('test').get()
+    .then((snapshot) => {
+      snapshot.forEach((doc) => {
+        res.send(`${doc.id} -> ${doc.data()}`);
+        console.log(doc.id, '->', doc.data());
+      })
+    })
+    .catch((err) => {
+      console.log('Error getting documents', err);
+    })
+})
+
+app.listen(port, () => {
+  console.log("Listening in port", port)
+});
