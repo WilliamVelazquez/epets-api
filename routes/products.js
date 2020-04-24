@@ -1,12 +1,10 @@
 const express = require('express');
 const admin = require('firebase-admin');
-const { serviceKey } = require('../config')
-
-const serviceAccount = serviceKey;
+const { serviceKey, serviceUrl } = require('../config')
 
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://cohort1-teamdiego.firebaseio.com"
+  credential: admin.credential.cert(serviceKey),
+  databaseURL: serviceUrl
 });
 
 let db = admin.firestore();
@@ -15,8 +13,8 @@ function productsApi (app){
   const router = express.Router();
   app.use('/api', router);
 
-  router.post('/:collection', (req, res, next) => {
-    let ref = req.params.collection
+  router.post('/:product/:collection', (req, res, next) => {
+    let ref = `${req.params.product}/pets/${req.params.collection}`;
     db.collection(ref).doc().create(req.body)
     .then((r) => {
       console.log(`Document created successfully`);
@@ -28,12 +26,12 @@ function productsApi (app){
     })
   })
 
-  router.delete('/:collection/:id', (req, res, next) => {
-    let ref = `${req.params.collection}/${req.params.id}`
+  router.delete('/:product/:collection/:id', (req, res, next) => {
+    let ref = `${req.params.product}/pets/${req.params.collection}/${req.params.id}`;
     db.doc(ref).delete()
     .then(() => {
       console.log('Document successfully deleted.');
-      res.json({"Document":"deleted"});
+      res.status(200).json({"Document":"deleted"});
     })
     .catch((err) => {
       console.log('Error deleting documents:', err);
@@ -41,17 +39,17 @@ function productsApi (app){
     })
   })
 
-  router.get('/:collection', (req, res, next) => {
-    let ref = req.params.collection
+  router.get('/:product/:collection', (req, res, next) => {
+    let ref = `${req.params.product}/pets/${req.params.collection}`;
     db.collection(ref).get()
     .then((snapshot) => {
       let documentsId = {}
       console.log(`This are the documents in ${req.params.collection} collection:`)
       snapshot.forEach((doc) => {
-        documentsId[doc.id] = doc.data().pName;
-        console.log(doc.id, '->', doc.data().pName);
+        documentsId[doc.id] = doc.data().name;
+        console.log(doc.id, '->', doc.data().name);
       })
-      res.json(documentsId);
+      res.status(200).json(documentsId);
     }) 
     .catch((err) => {
       console.log('Error getting documents:', err);
@@ -59,13 +57,13 @@ function productsApi (app){
     })
   })
 
-  router.get('/:collection/:id', (req, res, next) => {
-    let ref = `${req.params.collection}/${req.params.id}`
+  router.get('/:product/:collection/:id', (req, res, next) => {
+    let ref = `${req.params.product}/pets/${req.params.collection}/${req.params.id}`;
     db.doc(ref).get()
     .then((doc) => {
       if (doc.exists) {
-        console.log(`Document data ${JSON.stringify(doc.data())}`);
-        res.json(doc.data())
+        console.log(`Document data ${doc.data()}`);
+        res.status(200).json(doc.data())
       } else {
         console.log("No such document!");
       }
@@ -76,8 +74,8 @@ function productsApi (app){
     })
   })
 
-  router.put('/:collection/:id', (req, res, next) => {
-    let ref = `${req.params.collection}/${req.params.id}`
+  router.put('/:product/:collection/:id', (req, res, next) => {
+    let ref = `${req.params.product}/pets/${req.params.collection}/${req.params.id}`;
     db.doc(ref).update(req.body)
     .then((r) => {
       console.log(`Document updated successfully`);
