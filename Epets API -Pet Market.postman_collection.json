@@ -1,0 +1,394 @@
+{
+	"info": {
+		"_postman_id": "fdac2a79-925f-417d-aa70-29a79d3ecde2",
+		"name": "Epets API -Pet Market",
+		"description": "# Epets API - Pet Market \nIs an API developed with Node.js, Express and Firebase, that provides the data for the frontend part of the project, which you can find [here](https://github.com/lcasallas/epets). This data is store in a Cloud-Firestore Database.\n\nIn this collection you can create, read, update and delete with the existing endpoints.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Post a new product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"description\" : \"description\",\n\t\"image\" : \"image\",\n\t\"name\" : \"name\",\n\t\"url\" : \"url\" \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/api/{{category}}/{{pet}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"{{category}}",
+						"{{pet}}"
+					]
+				},
+				"description": "This endpoint should create a new product in the database specified the collection, the body needs to be an JSON objetc and it's recommended (but not necessary) to include: name, description, url and image keys with string values. "
+			},
+			"response": [
+				{
+					"name": "Post a new product",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"description\" : \"description\",\n\t\"image\" : \"image\",\n\t\"name\" : \"name\",\n\t\"url\" : \"url\" \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/api/{{category}}/{{pet}}",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"{{category}}",
+								"{{pet}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "22"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"16-NdGzf8Tn5YdFEec/JDURXqG5iFE\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Apr 2020 18:47:52 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"document\": \"created\"\n}"
+				}
+			]
+		},
+		{
+			"name": "List of products ",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				},
+				"description": "This endpoint should return a json object with the id an name of the products in a collection"
+			},
+			"response": [
+				{
+					"name": "List of products ",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/api/{{category}}/{{pet}}",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"{{category}}",
+								"{{pet}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "160"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"a0-p44YA1h5SrKFs0dM0J4/kw7XiLI\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Apr 2020 19:51:08 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"9cP12uQa8ezWN6R92rjt\": \"Costal de croquetas\",\n    \"LZj5xMUbLh8znCw5TmBI\": \"Premios premium\",\n    \"UiQ3Ul8Blf9lI2Uil8cA\": \"name\",\n    \"neciGD1ZxZhb5YRa9BwC\": \"Estofado de carne\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Modify a product",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"description\" : \"description\",\n\t\"image\" : \"new image\",\n\t\"name\" : \"new name\",\n\t\"url\" : \"url\" \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/api/{{category}}/{{pet}}/´id-here´",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"{{category}}",
+						"{{pet}}",
+						"´id-here´"
+					]
+				},
+				"description": "This endpoint lets you correct mistakes in a product by modifying the hole product info, this means you have to pass all the fields of the product, not only the one you change."
+			},
+			"response": [
+				{
+					"name": "Modify a product",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"description\" : \"description\",\n\t\"image\" : \"new image\",\n\t\"name\" : \"new name\",\n\t\"url\" : \"url\" \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/api/{{category}}/{{pet}}/´id-here´",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"{{category}}",
+								"{{pet}}",
+								"´id-here´"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "22"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"16-fEar+OJBpsSFfdN45M6rVk3NGUM\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Apr 2020 20:18:02 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"document\": \"updated\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Product info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				},
+				"description": "This endpoint should return the full info of the product whose id was passed in the request params"
+			},
+			"response": [
+				{
+					"name": "Product info",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/api/{{category}}/{{pet}}/´id-here´",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"{{category}}",
+								"{{pet}}",
+								"´id-here´"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "71"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"47-466sTjB5PzFj/oXmmCaCC30vYdA\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Apr 2020 19:52:02 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"url\": \"url\",\n    \"image\": \"image\",\n    \"name\": \"name\",\n    \"description\": \"description\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete a product",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3001/api/{{category}}/{{pet}}/´id-here´",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"{{category}}",
+						"{{pet}}",
+						"´id-here´"
+					]
+				},
+				"description": "This endpoint should delete a product of the collection chosen in the request params, it needs to recive the id of the product to be removed."
+			},
+			"response": [
+				{
+					"name": "Delete a product",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/api/{{category}}/{{pet}}/´id-here´",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"{{category}}",
+								"{{pet}}",
+								"´id-here´"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "22"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"16-YWUx7DvLyINLu5qW0TAG8pY0+RI\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Apr 2020 20:21:45 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Document\": \"deleted\"\n}"
+				}
+			]
+		}
+	],
+	"protocolProfileBehavior": {}
+}

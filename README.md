@@ -1,11 +1,12 @@
 # Epets API - PetMarket
 
 Backend for the E-Commerce Epets developed with NodeJs, Express and Firebase.
+Provides the data for the frontend part of the project, which you can find [here](https://github.com/lcasallas/epets).
 
 ### 🚀 Links
 
  * **API:** 
- * **Documentation:** 
+ * **Documentation:** https://documenter.getpostman.com/view/10309962/SzfCV6Nr
 
 #### 🛠 Installation
 ```
@@ -28,20 +29,25 @@ You can test the project with Postman using the collection on the repository.
 
 ### 🛠️ Technologies
 
-  * Node JS
-  * Express
-  * Postman
+The tools used:
 
-### Authors ✒️
+  * Developed with: Node.js, Express & Firebase
+  * Database: Cloud Firebase
+  * Tested and Documented in: Postman
 
-* **William Velazquez** - [WilliamVelazquez](https://github.com/WilliamVelazquez)
-* **Leonardo Casallas** - [lcasallas](https://github.com/lcasallas)
-* **Alberto Camarena** - [Alberthor47](https://github.com/Alberthor47)
+### ✒️ Authors
+
+* **César Galindo** - [chestergalindo](https://github.com/chestergalindo)
+* **Francisco López** - [pacool84](https://github.com/pacool84)
 * **Jose Barrios** - [jbarriospd](https://github.com/jbarriospd)
+* **Leonardo Casallas** - [lcasallas](https://github.com/lcasallas)
+* **Luis Flores Álvarez** - [luisflorescode](https://github.com/luisflorescode)
+* **William Velazquez** - [WilliamVelazquez](https://github.com/WilliamVelazquez)
+* **Alberto Camarena** - [alberthor47](https://github.com/Alberthor47)
 
 If you prefer knows the [contributors](https://github.com/WilliamVelazquez/epets-api/pulse/monthly) check this link.
 
-### Expressions of Gratitude 🎁
+### 🎁 Expressions of Gratitude 
 
 * Comments a other people about this project. 📢
 * Invite us a beer 🍺.
