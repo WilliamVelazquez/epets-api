@@ -2,13 +2,12 @@
 
 Backend for the E-Commerce Epets developed with NodeJs, Express and Firebase.
 
-### 🚀 Enlaces
+### 🚀 Links
 
- * **First Version:** 
+ * **API:** 
  * **Documentation:** 
- * **Mockup:** 
 
-#### 🛠 Installation of project
+#### 🛠 Installation
 ```
 npm install  -  For installing dependencies
 ```
@@ -23,21 +22,22 @@ npm run dev  -  For running on development environment
 npm run start  -  For running on production environment
 ```
 
-This project start in port http://localhost:3001
+This project start in the port http://localhost:3001
 
 You can test the project with Postman using the collection on the repository.
 
-### 🛠️ build with
+### 🛠️ Technologies
 
-The tools used
-
-  * Frontend: React
+  * Node JS
+  * Express
+  * Postman
 
 ### Authors ✒️
 
-* **Jose Barrios** - [jbarriospd](https://github.com/jbarriospd)
-* **Leonardo Casallas** - [lcasallas](https://github.com/lcasallas)
 * **William Velazquez** - [WilliamVelazquez](https://github.com/WilliamVelazquez)
+* **Leonardo Casallas** - [lcasallas](https://github.com/lcasallas)
+* **Alberto Camarena** - [Alberthor47](https://github.com/Alberthor47)
+* **Jose Barrios** - [jbarriospd](https://github.com/jbarriospd)
 
 If you prefer knows the [contributors](https://github.com/WilliamVelazquez/epets-api/pulse/monthly) check this link.
 
