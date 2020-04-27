@@ -24,11 +24,11 @@
   },
   "homepage": "https://github.com/WilliamVelazquez/epets-api#readme",
   "dependencies": {
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "firebase-admin": "^8.10.0"
+    "dotenv": "8.2.0",
+    "express": "4.17.1",
+    "firebase-admin": "8.10.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.3"
+    "nodemon": "2.0.3"
   }
 }
