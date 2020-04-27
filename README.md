@@ -3,13 +3,12 @@
 Backend for the E-Commerce Epets developed with NodeJs, Express and Firebase.
 Provides the data for the frontend part of the project, which you can find [here](https://github.com/lcasallas/epets).
 
-### 🚀 Enlaces
+### 🚀 Links
 
- * **First Version:** 
+ * **API:** 
  * **Documentation:** https://documenter.getpostman.com/view/10309962/SzfCV6Nr
- * **Mockup:** 
 
-#### 🛠 Installation of project
+#### 🛠 Installation
 ```
 npm install  -  For installing dependencies
 ```
@@ -24,11 +23,11 @@ npm run dev  -  For running on development environment
 npm run start  -  For running on production environment
 ```
 
-This project start in port http://localhost:3001
+This project start in the port http://localhost:3001
 
 You can test the project with Postman using the collection on the repository.
 
-### 🛠️ build with
+### 🛠️ Technologies
 
 The tools used:
 
@@ -37,7 +36,6 @@ The tools used:
   * Tested and Documented in: Postman
 
 ### ✒️ Authors
-
 
 * **César Galindo** - [chestergalindo](https://github.com/chestergalindo)
 * **Francisco López** - [pacool84](https://github.com/pacool84)
