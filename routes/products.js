@@ -46,8 +46,8 @@ function productsApi (app){
       let documentsId = {}
       console.log(`This are the documents in ${req.params.collection} collection:`)
       snapshot.forEach((doc) => {
-        documentsId[doc.id] = doc.data().name;
-        console.log(doc.id, '->', doc.data().name);
+        documentsId[doc.id] = doc.data();
+        console.log(doc.id, '->', doc.data());
       })
       res.status(200).json(documentsId);
     }) 
