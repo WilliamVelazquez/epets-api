@@ -5,7 +5,7 @@ Provides the data for the frontend part of the project, which you can find [here
 
 ### 🚀 Links
 
- * **API:** 
+ * **API:** https://epets-pet-market.herokuapp.com/
  * **Documentation:** https://documenter.getpostman.com/view/10309962/SzfCV6Nr
 
 #### 🛠 Installation
