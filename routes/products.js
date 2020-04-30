@@ -26,17 +26,37 @@ function productsApi (app){
     })
   })
 
-  router.delete('/:product/:collection/:id', (req, res, next) => {
-    let ref = `${req.params.product}/pets/${req.params.collection}/${req.params.id}`;
-    db.doc(ref).delete()
-    .then(() => {
-      console.log('Document successfully deleted.');
-      res.status(200).json({"Document":"deleted"});
+  router.get('/:product',  (req, res, next) => {
+    let ref = `${req.params.product}/pets`
+    db.doc(ref).listCollections()
+    .then( async (collections) => {
+      let collectionList = []
+      for(let collection of collections){
+        collectionList.push(collection.id)   
+      }
+      let data = await getSubcollectionsData(collectionList);
+      res.status(200).json(data)
     })
     .catch((err) => {
-      console.log('Error deleting documents:', err);
-      res.status(500).json({"error":"deleting"});
+      console.log('Error listing sub-collections:', err);
+      res.status(500).json({"error":"listing sub-collections"});
     })
+
+    async function getSubcollectionsData (list) { 
+      let data = {}
+      for(let pet of list){
+        let secRef = `${ref}/${pet}`
+        let productDocs = {}
+        console.log('Documents in: ', pet);
+        let snapshot = await db.collection(secRef).get()
+        snapshot.forEach((doc) => {
+          console.log(' ° ', doc.id,'  ->  ',doc.data());
+          productDocs[doc.id] = doc.data();
+          data[pet] = productDocs;
+        })
+      }
+      return data;
+    }
   })
 
   router.get('/:product/:collection', (req, res, next) => {
@@ -46,14 +66,14 @@ function productsApi (app){
       let documentsId = {}
       console.log(`This are the documents in ${req.params.collection} collection:`)
       snapshot.forEach((doc) => {
-        documentsId[doc.id] = doc.data().name;
-        console.log(doc.id, '->', doc.data().name);
+        documentsId[doc.id] = doc.data();
+        console.log(doc.id, '->', doc.data());
       })
       res.status(200).json(documentsId);
     }) 
     .catch((err) => {
-      console.log('Error getting documents:', err);
-      res.status(500).json({"error":"getting documents"});;
+      console.log('Error getting documents in collection:', err);
+      res.status(500).json({"error":"getting documents in collection"});
     })
   })
 
@@ -69,8 +89,8 @@ function productsApi (app){
       }
     })
     .catch((err) => {
-      console.log('Error getting document:', err);
-      res.status(500).json({"error":"getting document"});;
+      console.log('Error getting document data:', err);
+      res.status(500).json({"error":"getting documents data"});
     })
   })
 
@@ -87,6 +107,24 @@ function productsApi (app){
     })
   })
 
+  router.delete('/:product/:collection/:id', (req, res, next) => {
+    let ref = `${req.params.product}/pets/${req.params.collection}/${req.params.id}`;
+    db.doc(ref).delete()
+    .then(() => {
+      console.log('Document successfully deleted.');
+      res.status(200).json({"Document":"deleted"});
+    })
+    .catch((err) => {
+      console.log('Error deleting documents:', err);
+      res.status(500).json({"error":"deleting"});
+    })
+  })
 }
 
 module.exports = productsApi
+
+async function asyncForEach(array, callback) {
+  for (let index = 0; index < array.length; index++) {
+    await callback(array[index], index, array);
+  }
+}
