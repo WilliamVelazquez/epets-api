@@ -12,9 +12,9 @@ let db = admin.firestore();
 
 function productsApi (app){
   const router = express.Router();
-  app.use('/', router);
+  app.use('/api/products', router);
 
-  router.post('/api/:product/:collection', (req, res, next) => {
+  router.post('/:product/:collection', (req, res, next) => {
     let ref = `${req.params.product}/pets/${req.params.collection}`;
     db.collection(ref).doc().create(req.body)
     .then((r) => {
@@ -27,7 +27,7 @@ function productsApi (app){
     })
   })
 
-  router.get('/api/:product',  (req, res, next) => {
+  router.get('/:product',  (req, res, next) => {
     let ref = `${req.params.product}/pets`
     db.doc(ref).listCollections()
     .then( async (collections) => {
@@ -60,7 +60,7 @@ function productsApi (app){
     }
   })
 
-  router.get('/api/:product/:collection', (req, res, next) => {
+  router.get('/:product/:collection', (req, res, next) => {
     let ref = `${req.params.product}/pets/${req.params.collection}`;
     db.collection(ref).get()
     .then((snapshot) => {
@@ -78,7 +78,7 @@ function productsApi (app){
     })
   })
 
-  router.get('/api/:product/:collection/:id', (req, res, next) => {
+  router.get('/:product/:collection/:id', (req, res, next) => {
     let ref = `${req.params.product}/pets/${req.params.collection}/${req.params.id}`;
     db.doc(ref).get()
     .then((doc) => {
@@ -95,7 +95,7 @@ function productsApi (app){
     })
   })
 
-  router.put('/api/:product/:collection/:id', (req, res, next) => {
+  router.put('/:product/:collection/:id', (req, res, next) => {
     let ref = `${req.params.product}/pets/${req.params.collection}/${req.params.id}`;
     db.doc(ref).update(req.body)
     .then((r) => {
@@ -108,7 +108,7 @@ function productsApi (app){
     })
   })
 
-  router.delete('/api/:product/:collection/:id', (req, res, next) => {
+  router.delete('/:product/:collection/:id', (req, res, next) => {
     let ref = `${req.params.product}/pets/${req.params.collection}/${req.params.id}`;
     db.doc(ref).delete()
     .then(() => {
@@ -121,42 +121,6 @@ function productsApi (app){
     })
   })
 
-  router.get('/ads', (req, res, next) => {
-    let ref = `ads`
-    db.collection(ref).get()
-    .then((snapshot) => {
-      let documentsId = {}
-      console.log(`This are the documents in ads collection:`)
-      snapshot.forEach((doc) => {
-        documentsId[doc.id] = doc.data();
-        console.log(doc.id, '->', doc.data());
-      })
-      res.status(200).json(documentsId);
-    }) 
-    .catch((err) => {
-      console.log('Error getting documents in collection:', err);
-      res.status(500).json({"error":"getting documents in collection"});
-    })
-  })
-
-  router.get('/medic', (req, res, next) => {
-    let ref = `med-service`
-    db.collection(ref).get()
-    .then((snapshot) => {
-      let documentsId = {}
-      console.log(`This are the documents in ads collection:`)
-      snapshot.forEach((doc) => {
-        documentsId[doc.id] = doc.data();
-        console.log(doc.id, '->', doc.data());
-      })
-      res.status(200).json(documentsId);
-    }) 
-    .catch((err) => {
-      console.log('Error getting documents in collection:', err);
-      res.status(500).json({"error":"getting documents in collection"});
-    })
-  })
-  
 }
 
 module.exports = productsApi
