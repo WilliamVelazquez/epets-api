@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors')
+
 const productApi = require('./routes/products.js');
 const { port } = require('./config');
 
