@@ -1,6 +1,7 @@
 const express = require('express');
 const admin = require('firebase-admin');
-const { serviceKey, serviceUrl } = require('../config')
+
+const { serviceKey, serviceUrl } = require('../config');
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceKey),
@@ -11,7 +12,7 @@ let db = admin.firestore();
 
 function productsApi (app){
   const router = express.Router();
-  app.use('/api', router);
+  app.use('/api/products', router);
 
   router.post('/:product/:collection', (req, res, next) => {
     let ref = `${req.params.product}/pets/${req.params.collection}`;
@@ -119,6 +120,7 @@ function productsApi (app){
       res.status(500).json({"error":"deleting"});
     })
   })
+
 }
 
 module.exports = productsApi
